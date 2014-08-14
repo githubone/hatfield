@@ -1,0 +1,59 @@
+﻿@using hatfield.ViewModels
+@model PeopleViewModel
+
+@using (Html.BeginForm("Index", "People",FormMethod.Post, new { id = "frmPeople" }))
+{
+    @Html.DropDownList("SelectedName", @Model.PeopleNames, new { id = "ddNames" })
+  
+    if (Model.People != null)
+    {
+     <fieldset>
+        <legend></legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.People.Name)
+                    @Html.TextBox("Name",Model.People.Name)
+                </li>
+
+                  <li>
+                    @Html.LabelFor(m => m.People.DateOfBirth)
+                    @Html.TextBox("DateOfBirth",Model.People.DateOfBirth)
+                </li>
+                  <li>
+                    @Html.LabelFor(m => m.People.BirthPlace)
+                    @Html.TextBox("BirthPlace",Model.People.BirthPlace)
+                </li>
+
+                  <li>
+                    @Html.LabelFor(m => m.People.Height)
+                    @Html.TextBox("Height",Model.People.Height)
+                </li>
+
+                    <li>
+                    @Html.LabelFor(m => m.People.Weight)
+                    @Html.TextBox("Weight",Model.People.Weight)
+                </li>
+
+                 <li>
+                    @Html.LabelFor(m => m.People.Age)
+                    @Html.TextBox("Age",Model.People.Age)
+                </li>
+            
+            </ol>
+        
+    </fieldset>
+    }
+    
+    <input type="submit"  style="display:none"/>
+}
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+
+    $(function () {
+        $('#ddNames').on('change', function () {
+            $('#frmPeople').submit();
+        });
+    });
+   
+</script>
